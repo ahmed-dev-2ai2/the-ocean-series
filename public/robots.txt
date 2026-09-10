@@ -1,0 +1,9 @@
+User-agent: *
+Disallow:
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /app/
+Disallow: /storage/*.pdf
+
+Sitemap: https://theoceanseries.com/sitemap.xml
