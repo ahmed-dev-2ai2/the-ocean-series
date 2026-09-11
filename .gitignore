@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 # Local video files - stored in Cloudflare R2
 resources/views/videos/*.mp4
+public/assets/videos/*.mp4
