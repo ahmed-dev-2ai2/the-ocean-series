@@ -99,36 +99,14 @@
     </script>
 
     {{-- ============================================= --}}
-    {{-- ✅ شريط الأخبار (ثابت في الأعلى) --}}
+    {{-- ✅ شريط الأخبار الدوّار الجديد (Carousel) --}}
     {{-- ============================================= --}}
-    <div id="site-news-ticker" style="position: fixed; top: 0; left: 0; width: 100%; height: 42px; z-index: 70; background: #0f172a; border-bottom: 2px solid #f6c951; overflow: hidden; direction: rtl; display: flex; align-items: center;">
-        <div style="display: flex; white-space: nowrap; animation: scroll-news-simple 25s linear infinite; gap: 0;">
-            <span style="display: inline-block; padding: 0 35px; color: #facc15; font-weight: 500; font-size: 14px; font-family: 'Cairo', sans-serif;">📢 تحديثات المنصة: جاري التطوير المستمر لإضافة مزايا جديدة</span>
-            <span style="display: inline-block; padding: 0 35px; color: #facc15; font-weight: 500; font-size: 14px; font-family: 'Cairo', sans-serif;">🎥 تم تفعيل خاصية رفع وعرض الفيديوهات بنجاح</span>
-            <span style="display: inline-block; padding: 0 35px; color: #facc15; font-weight: 500; font-size: 14px; font-family: 'Cairo', sans-serif;">⚙️ المنصة حالياً في مرحلة التشغيل التجريبي (Demo) وجاري التحديث المستمر</span>
-            <span style="display: inline-block; padding: 0 35px; color: #facc15; font-weight: 500; font-size: 14px; font-family: 'Cairo', sans-serif;">📢 تحديثات المنصة: جاري التطوير المستمر لإضافة مزايا جديدة</span>
-            <span style="display: inline-block; padding: 0 35px; color: #facc15; font-weight: 500; font-size: 14px; font-family: 'Cairo', sans-serif;">🎥 تم تفعيل خاصية رفع وعرض الفيديوهات بنجاح</span>
-            <span style="display: inline-block; padding: 0 35px; color: #facc15; font-weight: 500; font-size: 14px; font-family: 'Cairo', sans-serif;">⚙️ المنصة حالياً في مرحلة التشغيل التجريبي (Demo) وجاري التحديث المستمر</span>
-        </div>
-    </div>
-
-    <style>
-        @keyframes scroll-news-simple {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        #site-news-ticker:hover > div {
-            animation-play-state: paused;
-        }
-        @media (max-width: 640px) {
-            #site-news-ticker { height: 38px; }
-        }
-    </style>
+    @include('components.top-bar')
 
     {{-- ============================================= --}}
-    {{-- ✅ المحتوى الرئيسي (الفراغ العلوي = 42px شريط الأخبار + 56px نافبار) --}}
+    {{-- ✅ المحتوى الرئيسي (الفراغ العلوي = 48px شريط دوّار + 56/64px نافبار) --}}
     {{-- ============================================= --}}
-    <div id="app" class="pt-[98px] md:pt-[106px]">
+    <div id="app" class="pt-[104px] md:pt-[112px]">
         @yield('content')
     </div>
 

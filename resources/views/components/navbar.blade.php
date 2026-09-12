@@ -4,7 +4,7 @@
     role="navigation"
     aria-label="القائمة الرئيسية"
     class="fixed left-0 w-full z-50 bg-[#101820] shadow-lg border-b border-[#f6c951]/10"
-    style="top: 42px;"
+    style="top: 48px;"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between" dir="rtl">
 
