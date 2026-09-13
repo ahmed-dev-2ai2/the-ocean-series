@@ -65,7 +65,8 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     @stack('styles')
-</head>
+    {{-- ✅ حل FOUC: إخفاء x-cloak قبل تحميل Alpine.js --}}
+    <style>[x-cloak]{display:none!important;}</style></head>
 
 <body class="font-cairo bg-white text-gray-900 antialiased">
 
