@@ -75,35 +75,38 @@
                     <div class="group relative bg-white/70 backdrop-blur-md rounded-2xl shadow-light hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-white/50 fade-up">
                         
                         {{-- ============================================= --}}
-                        {{-- ✅ أزرار التحكم العائمة (تظهر عند hover) --}}
-                        {{-- ============================================= --}}
-                        <div class="absolute top-3 right-3 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                            {{-- زر الحذف --}}
-                            <form action="{{ route('videos.destroy', $video->id) }}" 
-                                  method="POST" 
-                                  onsubmit="return confirm('⚠️ هل أنت متأكد من حذف الفيديو: {{ addslashes($video->title) }}؟\n\nلا يمكن التراجع عن هذه العملية.')"
-                                  class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" 
-                                        class="w-9 h-9 flex items-center justify-center bg-red-500/90 hover:bg-red-600 text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 backdrop-blur-sm"
-                                        title="حذف الفيديو"
-                                        aria-label="حذف الفيديو">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                    </svg>
-                                </button>
-                            </form>
+{{-- ✅ أزرار التحكم العائمة --}}
+{{-- على الموبايل: تظهر دائماً | على الكمبيوتر: عند hover --}}
+{{-- ============================================= --}}
+<div class="absolute top-3 right-3 z-30 flex gap-2 transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0">
+    
+    {{-- زر الحذف --}}
+    <form action="{{ route('videos.destroy', $video->id) }}" 
+          method="POST" 
+          onsubmit="return confirm('⚠️ هل أنت متأكد من حذف الفيديو؟\n\n{{ addslashes($video->title) }}')"
+          class="inline-block m-0">
+        @csrf
+        @method('DELETE')
+        <button type="submit" 
+                class="w-10 h-10 flex items-center justify-center bg-red-500 hover:bg-red-600 active:bg-red-700 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-sm cursor-pointer"
+                title="حذف الفيديو"
+                aria-label="حذف الفيديو">
+            <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+        </button>
+    </form>
 
-                            {{-- زر المشاهدة السريعة --}}
-                            <a href="{{ route('videos.show', $video->id) }}"
-                               class="w-9 h-9 flex items-center justify-center bg-[#062f47]/90 hover:bg-[#0a3d5c] text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 backdrop-blur-sm"
-                               title="مشاهدة سريعة"
-                               aria-label="مشاهدة سريعة">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </a>
+    {{-- زر المشاهدة السريعة --}}
+    <a href="{{ route('videos.show', $video->id) }}"
+       class="w-10 h-10 flex items-center justify-center bg-[#062f47] hover:bg-[#0a3d5c] text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-sm cursor-pointer"
+       title="مشاهدة سريعة"
+       aria-label="مشاهدة سريعة">
+        <svg class="w-4 h-4 pointer-events-none" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+    </a>
+
                         </div>
                         
                         {{-- ===== صورة الغلاف (Thumbnail) ===== --}}

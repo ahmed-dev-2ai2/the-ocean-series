@@ -116,7 +116,10 @@
 
     {{-- ✅ زر موقع المطور (Portfolio) - داخل body، قبل السكريبتات --}}
     @include('components.portfolio-link')
-
+        {{-- ✅ زر العودة للمنصة (يظهر فقط في صفحات البورتفوليو) --}}
+    @if(request()->routeIs('ahmed.*'))
+        @include('components.back-to-platform')
+    @endif
     @stack('scripts')
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

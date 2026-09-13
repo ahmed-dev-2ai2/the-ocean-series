@@ -1,77 +1,120 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أحمد | اتصل بي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>body { font-family: 'Cairo', sans-serif; }</style>
-</head>
-<body class="bg-gradient-to-br from-[#0a1a2e] via-[#062f47] to-[#010407] text-white min-h-screen">
+{{-- resources/views/ahmed/contact.blade.php --}}
+
+@extends('layouts.app')
+
+@section('title', 'تواصل معي | أحمد عبد النبي')
+
+@section('content')
+<div class="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#0a1a2e] via-[#062f47] to-[#010407] text-white">
+
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-20 -right-20 w-96 h-96 bg-[#f6c951]/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-[#10b981]/10 rounded-full blur-3xl animate-float animation-delay-2000"></div>
+    </div>
 
     {{-- شريط التنقل --}}
-    <nav class="bg-[#101820]/90 backdrop-blur-md shadow-lg py-4 px-6 sticky top-0 z-50 border-b border-[#f6c951]/20">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-[#f6c951]">أحمد</h1>
-            <div class="flex gap-3 md:gap-5 flex-wrap text-sm md:text-base">
-                <a href="{{ route('ahmed.home') }}" class="text-gray-300 hover:text-[#f6c951] font-medium transition">الرئيسية</a>
-                <a href="{{ route('ahmed.about') }}" class="text-gray-300 hover:text-[#f6c951] font-medium transition">من أنا</a>
-                <a href="{{ route('ahmed.skills') }}" class="text-gray-300 hover:text-[#f6c951] font-medium transition">مهاراتي</a>
-                <a href="{{ route('ahmed.projects') }}" class="text-gray-300 hover:text-[#f6c951] font-medium transition">مشاريعي</a>
-                <a href="{{ route('ahmed.gallery') }}" class="text-gray-300 hover:text-[#f6c951] font-medium transition">معرضي</a>
-                <a href="{{ route('ahmed.contact') }}" class="text-[#f6c951] font-bold border-b-2 border-[#f6c951] pb-1">اتصل بي</a>
+    <nav class="relative z-40 bg-[#101820]/80 backdrop-blur-md border-b border-[#f6c951]/20 sticky top-0">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🌊</span>
+                <h1 class="text-xl font-bold text-[#f6c951]">أحمد</h1>
+            </div>
+            <div class="flex gap-3 md:gap-6 text-xs md:text-base">
+                <a href="{{ route('ahmed.home') }}" class="text-gray-300 hover:text-[#f6c951] transition">الرئيسية</a>
+                <a href="{{ route('ahmed.about') }}" class="text-gray-300 hover:text-[#f6c951] transition">من أنا</a>
+                <a href="{{ route('ahmed.projects') }}" class="text-gray-300 hover:text-[#f6c951] transition">المشاريع</a>
+                <a href="{{ route('ahmed.contact') }}" class="text-[#f6c951] font-bold border-b-2 border-[#f6c951] pb-1">تواصل معي</a>
             </div>
         </div>
     </nav>
 
     {{-- المحتوى --}}
-    <section class="max-w-4xl mx-auto mt-12 p-6">
-        <h2 class="text-4xl font-bold text-center text-[#f6c951] mb-3">اتصل بي</h2>
-        <p class="text-center text-gray-400 mb-12">يمكنك التواصل معي عبر الطرق التالية</p>
+    <section class="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
+        
+        {{-- العنوان --}}
+        <div class="text-center mb-14">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#f6c951] mb-3">تواصل معي 📬</h1>
+            <p class="text-gray-400 text-lg">سعيد بتواصلك، اختر الوسيلة الأنسب لك</p>
+        </div>
 
-        <div class="grid md:grid-cols-3 gap-6 mb-10">
-            {{-- الهاتف --}}
-            <a href="tel:+201111168104" class="group bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-[#f6c951]/20 hover:border-[#f6c951]/60 hover:-translate-y-1 transition-all duration-300 text-center">
-                <div class="text-5xl mb-3 group-hover:scale-110 transition">📞</div>
-                <h3 class="font-bold text-[#f6c951] mb-1">الهاتف</h3>
-                <p class="text-gray-300 text-sm" dir="ltr">+20 111 116 8104</p>
-            </a>
-
-            {{-- الإيميل --}}
-            <a href="mailto:ahmed.dev.team.ai@gmail.com" class="group bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-[#f6c951]/20 hover:border-[#f6c951]/60 hover:-translate-y-1 transition-all duration-300 text-center">
-                <div class="text-5xl mb-3 group-hover:scale-110 transition">✉️</div>
-                <h3 class="font-bold text-[#f6c951] mb-1">البريد الإلكتروني</h3>
-                <p class="text-gray-300 text-sm break-all">ahmed.dev.team.ai@gmail.com</p>
-            </a>
-
+        {{-- بطاقات التواصل --}}
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            
             {{-- واتساب --}}
-            <a href="https://wa.me/201111168104" target="_blank" class="group bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-[#f6c951]/20 hover:border-[#f6c951]/60 hover:-translate-y-1 transition-all duration-300 text-center">
-                <div class="text-5xl mb-3 group-hover:scale-110 transition">💬</div>
+            <a href="https://wa.me/201112465676" target="_blank" rel="noopener noreferrer"
+               class="group bg-white/5 backdrop-blur-md p-6 rounded-2xl border-2 border-[#f6c951]/20 hover:border-[#25D366] hover:-translate-y-2 transition-all duration-300 text-center">
+                <div class="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">💬</div>
                 <h3 class="font-bold text-[#f6c951] mb-1">واتساب</h3>
-                <p class="text-gray-300 text-sm">تواصل مباشر</p>
+                <p class="text-gray-400 text-sm" dir="ltr">+20 111 246 5676</p>
+                <span class="inline-block mt-3 text-xs text-[#25D366] opacity-0 group-hover:opacity-100 transition">اضغط للمحادثة ←</span>
+            </a>
+
+            {{-- البريد --}}
+            <a href="mailto:Ahmed.dev.team.ai@gmail.com" 
+               class="group bg-white/5 backdrop-blur-md p-6 rounded-2xl border-2 border-[#f6c951]/20 hover:border-[#f6c951] hover:-translate-y-2 transition-all duration-300 text-center">
+                <div class="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">✉️</div>
+                <h3 class="font-bold text-[#f6c951] mb-1">البريد الإلكتروني</h3>
+                <p class="text-gray-400 text-xs break-all">Ahmed.dev.team.ai@gmail.com</p>
+                <span class="inline-block mt-3 text-xs text-[#f6c951] opacity-0 group-hover:opacity-100 transition">اضغط للإرسال ←</span>
+            </a>
+
+            {{-- LinkedIn --}}
+            <a href="https://www.linkedin.com/in/ahmed--abdelnaby" target="_blank" rel="noopener noreferrer"
+               class="group bg-white/5 backdrop-blur-md p-6 rounded-2xl border-2 border-[#f6c951]/20 hover:border-[#0a66c2] hover:-translate-y-2 transition-all duration-300 text-center">
+                <div class="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">💼</div>
+                <h3 class="font-bold text-[#f6c951] mb-1">LinkedIn</h3>
+                <p class="text-gray-400 text-sm">أحمد عبد النبي</p>
+                <span class="inline-block mt-3 text-xs text-[#0a66c2] opacity-0 group-hover:opacity-100 transition">اضغط للزيارة ←</span>
             </a>
         </div>
 
-        {{-- نموذج التواصل --}}
-        <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-[#f6c951]/20">
-            <h3 class="text-xl font-bold text-[#f6c951] mb-4">أرسل لي رسالة</h3>
-            <form action="#" method="POST" class="space-y-4">
-                @csrf
-                <input type="text" placeholder="الاسم" class="w-full bg-[#062f47]/50 border border-[#f6c951]/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#f6c951] transition">
-                <input type="email" placeholder="البريد الإلكتروني" class="w-full bg-[#062f47]/50 border border-[#f6c951]/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#f6c951] transition">
-                <textarea rows="4" placeholder="رسالتك..." class="w-full bg-[#062f47]/50 border border-[#f6c951]/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#f6c951] transition resize-none"></textarea>
-                <button type="submit" class="w-full bg-gradient-to-r from-[#f6c951] via-yellow-500 to-[#f59e0b] hover:from-yellow-500 hover:to-yellow-600 text-[#062f47] font-extrabold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    🚀 إرسال الرسالة
-                </button>
-            </form>
+        {{-- معلومات إضافية --}}
+        <div class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-[#f6c951]/20">
+            <h2 class="text-2xl font-bold text-[#f6c951] mb-6 text-center">📞 معلومات سريعة</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-gray-300">
+                <div class="flex items-center justify-center gap-3 bg-[#f6c951]/5 p-4 rounded-xl border border-[#f6c951]/20">
+                    <span class="text-3xl">📍</span>
+                    <div>
+                        <p class="text-xs text-gray-400">الموقع</p>
+                        <p class="font-bold">الأقصر، مصر</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center gap-3 bg-[#10b981]/5 p-4 rounded-xl border border-[#10b981]/20">
+                    <span class="text-3xl">⏰</span>
+                    <div>
+                        <p class="text-xs text-gray-400">متاح</p>
+                        <p class="font-bold">9 صباحاً – 9 مساءً</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-[#f6c951]/10 text-center">
+                <p class="text-gray-300 text-lg mb-2">🌟 هل لديك مشروع في ذهنك؟</p>
+                <p class="text-gray-400 text-sm">تواصل معي الآن، ودعنا نحوّل فكرتك إلى واقع رقمي ملموس.</p>
+                <a href="https://wa.me/201112465676" target="_blank" 
+                   class="inline-flex items-center gap-2 mt-5 px-8 py-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#25D366] text-white font-bold rounded-full shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                    <span class="text-xl">💬</span>
+                    ابدأ محادثة واتساب
+                </a>
+            </div>
+        </div>
+
+        {{-- زر العودة --}}
+        <div class="text-center pt-10">
+            <a href="/" class="inline-flex items-center gap-2 text-[#f6c951]/70 hover:text-[#f6c951] transition text-sm">
+                ← العودة إلى منصة The Ocean Series
+            </a>
         </div>
     </section>
+</div>
 
-    <footer class="text-center text-gray-500 mt-16 py-8 border-t border-[#f6c951]/10">
-        <p>جميع الحقوق محفوظة © أحمد 2026</p>
-    </footer>
-
-</body>
-</html>
+<style>
+    @keyframes float-anim {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(30px, -20px) scale(1.05); }
+        66% { transform: translate(-20px, 15px) scale(0.95); }
+    }
+    .animate-float { animation: float-anim 10s ease-in-out infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+</style>
+@endsection
