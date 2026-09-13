@@ -35,8 +35,15 @@
             </p>
         </div>
 
-        {{-- ===== زر رفع فيديو جديد ===== --}}
-        <div class="flex justify-center sm:justify-end mb-8 fade-up">
+        {{-- ===== زر رفع فيديو جديد + عدد الفيديوهات ===== --}}
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 fade-up">
+            <div class="flex items-center gap-3 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-xl border border-[#062f47]/10">
+                <span class="text-2xl">📊</span>
+                <div>
+                    <p class="text-xs text-[#062f47]/60">إجمالي الفيديوهات</p>
+                    <p class="font-bold text-[#062f47] text-lg">{{ $videos->total() }}</p>
+                </div>
+            </div>
             <a href="{{ route('videos.create') }}" 
                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#f6c951] via-[#fbbf24] to-[#f59e0b] hover:from-[#f59e0b] hover:via-[#f6c951] hover:to-[#fbbf24] text-[#062f47] font-extrabold px-6 py-3.5 rounded-xl shadow-gold hover:shadow-2xl hover:shadow-[#f6c951]/40 hover:-translate-y-1 transition-all duration-300 border border-white/20">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,12 +72,44 @@
         @if($videos->count() > 0)
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 @foreach($videos as $video)
-                    <div class="group bg-white/70 backdrop-blur-md rounded-2xl shadow-light hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-white/50 fade-up">
+                    <div class="group relative bg-white/70 backdrop-blur-md rounded-2xl shadow-light hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-white/50 fade-up">
+                        
+                        {{-- ============================================= --}}
+                        {{-- ✅ أزرار التحكم العائمة (تظهر عند hover) --}}
+                        {{-- ============================================= --}}
+                        <div class="absolute top-3 right-3 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                            {{-- زر الحذف --}}
+                            <form action="{{ route('videos.destroy', $video->id) }}" 
+                                  method="POST" 
+                                  onsubmit="return confirm('⚠️ هل أنت متأكد من حذف الفيديو: {{ addslashes($video->title) }}؟\n\nلا يمكن التراجع عن هذه العملية.')"
+                                  class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" 
+                                        class="w-9 h-9 flex items-center justify-center bg-red-500/90 hover:bg-red-600 text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 backdrop-blur-sm"
+                                        title="حذف الفيديو"
+                                        aria-label="حذف الفيديو">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </button>
+                            </form>
+
+                            {{-- زر المشاهدة السريعة --}}
+                            <a href="{{ route('videos.show', $video->id) }}"
+                               class="w-9 h-9 flex items-center justify-center bg-[#062f47]/90 hover:bg-[#0a3d5c] text-white rounded-full shadow-lg hover:scale-110 transition-all duration-300 backdrop-blur-sm"
+                               title="مشاهدة سريعة"
+                               aria-label="مشاهدة سريعة">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </a>
+                        </div>
                         
                         {{-- ===== صورة الغلاف (Thumbnail) ===== --}}
                         <div class="relative aspect-video bg-[#062f47]/10 overflow-hidden">
                             @if($video->video_url)
-                                <video class="w-full h-full object-cover" muted>
+                                <video class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" muted>
                                     <source src="{{ $video->video_url }}" type="{{ $video->mime_type ?? 'video/mp4' }}">
                                 </video>
                             @else
@@ -83,6 +122,13 @@
                             @if($video->duration)
                                 <div class="absolute bottom-2 right-2 bg-[#062f47]/80 backdrop-blur-sm text-white text-xs font-bold px-2 py-1 rounded">
                                     {{ $video->duration }}
+                                </div>
+                            @endif
+
+                            {{-- ✅ شارة "جديد" إذا كان الفيديو أُضيف خلال 3 أيام --}}
+                            @if($video->created_at->diffInDays(now()) <= 3)
+                                <div class="absolute top-3 left-3 bg-gradient-to-r from-[#f6c951] to-[#f59e0b] text-[#062f47] text-xs font-extrabold px-2.5 py-1 rounded-full shadow-lg">
+                                    ✨ جديد
                                 </div>
                             @endif
                         </div>
@@ -152,15 +198,16 @@
 {{-- CSS إضافي محلي --}}
 {{-- ============================================= --}}
 <style>
-    /* ===== ظل ذهبي للزر ===== */
     .shadow-gold {
         box-shadow: 0 4px 20px rgba(246, 201, 81, 0.3);
     }
     .shadow-gold:hover {
         box-shadow: 0 8px 35px rgba(246, 201, 81, 0.5);
     }
+    .shadow-light {
+        box-shadow: 0 2px 10px rgba(6, 47, 71, 0.08);
+    }
 
-    /* ===== حركة الطفو ===== */
     @keyframes float-anim {
         0%, 100% { transform: translate(0, 0) scale(1); }
         33% { transform: translate(30px, -20px) scale(1.05); }
@@ -177,9 +224,7 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-    .pagination .page-item {
-        display: inline-block;
-    }
+    .pagination .page-item { display: inline-block; }
     .pagination .page-link {
         display: inline-flex;
         align-items: center;
@@ -213,7 +258,6 @@
         cursor: not-allowed;
     }
 
-    /* ===== تحسين الهواتف ===== */
     @media (max-width: 640px) {
         .pagination .page-link {
             min-width: 2rem;

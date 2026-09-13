@@ -25,8 +25,7 @@
         <div class="p-4 border-b border-[#f6c951]/10 hover:bg-[#f6c951]/5 transition-colors duration-200">
             <div class="flex items-start gap-3">
                 <img 
-                    src="https://ui-avatars.com/api/?name=Ahmed+AbdElnaby&size=80&background=f6c951&color=062f47&bold=true" 
-                    alt="أحمد عبد النبي" 
+src="{{ asset('assets/images/team/ahmed-abdelnaby.jpg') }}"                    alt="أحمد عبد النبي" 
                     class="w-14 h-14 rounded-full border-2 border-[#f6c951]/50 flex-shrink-0"
                 >
                 <div class="flex-1 min-w-0">
