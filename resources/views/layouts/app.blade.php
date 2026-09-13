@@ -61,6 +61,9 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- Alpine.js (مرة واحدة فقط) --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     @stack('styles')
 </head>
 
@@ -104,11 +107,14 @@
     @include('components.top-bar')
 
     {{-- ============================================= --}}
-    {{-- ✅ المحتوى الرئيسي (الفراغ العلوي = 48px شريط دوّار + 56/64px نافبار) --}}
+    {{-- ✅ المحتوى الرئيسي --}}
     {{-- ============================================= --}}
     <div id="app" class="pt-[104px] md:pt-[112px]">
         @yield('content')
     </div>
+
+    {{-- ✅ زر موقع المطور (Portfolio) - داخل body، قبل السكريبتات --}}
+    @include('components.portfolio-link')
 
     @stack('scripts')
 
